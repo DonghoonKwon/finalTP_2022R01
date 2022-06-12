@@ -125,10 +125,12 @@ print("include T")
 
 <br />
 
-```{r}
-#지하철 태그에서 버스 환승 하는 그림 하나 fig
+```{r, echo=FALSE, fig.align='center', out.width="80%", fig.cap="subway and bus"}
+ knitr::include_graphics("fig/transfer.png")
 ```
 
+
+<br />
 
 ## 2.2. Research Objectives
 
@@ -226,6 +228,9 @@ rawDataCon <- data.frame("No."=d1,"Name"=n1,"No. "=d2,"Name "=n2)
 <!-- |13 | 교통사업자ID | 27 | 총탑승시간 | -->
 
 <!-- |14 | 승차일시 | -->
+
+<br />
+
 ## 3.1. Description of Smart Card Data
 
 ```{r, echo=F}
@@ -238,23 +243,43 @@ kable(rawDataCon,
 
 ```
 
+<br />
 
 ## 3.2. Test Network(120 Line)
 
-```{r}
-#120번 버스 노선도
+```{r, echo=FALSE, fig.align='center', out.width="50%", fig.cap="120 Line Bus"}
+ knitr::include_graphics("fig/bus120Total.png")
 ```
 
-* 서울 강북~청량리를 잇는 버스  
 
-* 주요 정차역 (지하철역 몇개, 덕성여대, 서울 동부병원 )
+```{r, include=F}
+# * 서울 강북~청량리를 잇는 버스  
+# 
+# * 주요 정차역 (지하철역 몇개, 덕성여대, 서울 동부병원 )
+# 
+# * 2017년 우이신설선이 생기기 전 우이동으로 가는 승객들이 주로 이용
+# 
+# * 오후 첨두
+```
 
-* 2017년 우이신설선이 생기기 전 우이동으로 가는 승객들이 주로 이용
+* This Buses is connecting Gangbuk to Cheongnyangni in Seoul.
+
+* Major stops are Cheongnyangni station(Line 1), Suyu Station(Line 4), Duksung Women's University, Seoul Eastern Hospital etc..
+
+* Before the opening of Ui-Sinseol Line, passengers who usually went to Uidong used the bus.
+
+* In this presentation, only the peak hours of the afternoon were analyzed.
 
 
-## 3.3. Data Pre-prrocessing
 
 <br />
+
+## 3.3. Data Pre-processing
+
+
+
+<br />
+
 ### 3.3.1. Transfer Passengers
 
 ```{r,echo=FALSE}
@@ -318,7 +343,9 @@ kable(afterChain,
       align=c("c","c","c","c","c","c","c","c","c"),
       caption = "The trip chain of a transfer available passenger") %>%
    kable_styling(bootstrap_options = "striped", full_width = T, position = "center")%>%
-  kable_styling(latex_options = "HOLD_position")
+  kable_styling(latex_options = "HOLD_position") %>%
+  column_spec (4,border_left = F, border_right = T) %>%
+  kable_styling()
 
 
 ```
@@ -343,7 +370,16 @@ BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
 
 ## 3.4. Assumption
 
+
+<br />
+
 ### 3.4.1. Bus Timetable
+
+```{r, echo=FALSE, fig.align='center', out.width="900%", fig.cap="Framework for estimating passengers arrival time by each transfer type"}
+ knitr::include_graphics("fig/assumption.png")
+```
+
+<br />
 
 ### 3.4.2. Assumption  
 
@@ -366,9 +402,7 @@ BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
 
 ### 3.4.3 Estimating Passenger Arrival Time at the Bus Stop
 
-```{r}
-#통합 그림1 fig
-```
+
 
 ```{r}
 #통합 그림 2 퍼오기 fig
