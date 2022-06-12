@@ -67,27 +67,7 @@ options(scipen = 1000)
 
 <br />
 
-Transfer is important in the public transit since 대중교통에서 환승은 significantly 중요하다. 특히 도시 외곽에서 중심으로 들어오기 위해서는 수단 변경, 즉 환승이 필수적인데
 
-```{r, echo=FALSE, fig.align='center', out.width="100%", fig.cap="hwaseongsi"}
-# knitr::include_graphics("fig/hws.jpg")
-```
-
-```{r, echo=FALSE}
-print("echo F")
-```
-
-```{r, echo=TRUE}
-print("echo T")
-```
-
-```{r, include=FALSE}
-print("include F")
-```
-
-```{r, include=TRUE}
-print("include T")
-```
 
 
 <br />
@@ -370,6 +350,16 @@ kable(afterChain,
 
 ```
 
+<br />
+
+<center><strong>Table 4. Transfer Ratio during the afternoon peak time</strong></center>
+
+| Bus stop NO. | Name | BoardinglSubway |  Boarding | Transder ratio(%) |
+| :-----| :-----| :-----| :-----|:-----|
+|108000004 | 수유역.강북구청 | 190| 337| 56|
+|105000447 | 청량리역환승센터 | 16| 209| 8|
+|10700043 | 월곡역 | 71| 208| 34|
+|108000012 | 미아사거리역 | 26| 181| 14|
 
 
 <br />
@@ -482,14 +472,6 @@ BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
 <!-- ``` -->
 
 
-<center><strong>Table 4. Transfer Ratio during the afternoon peak time</strong></center>
-
-| Bus stop NO. | Name | BoardinglSubway |  Boarding | Transder ratio(%) |
-| :-----| :-----| :-----| :-----|:-----|
-|108000004 | 수유역.강북구청 | 190| 337| 56|
-|105000447 | 청량리역환승센터 | 16| 209| 8|
-|10700043 | 월곡역 | 71| 208| 34|
-|108000012 | 미아사거리역 | 26| 181| 14|
 
 <br />
 <br />
