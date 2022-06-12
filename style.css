@@ -1,12 +1,36 @@
+/*----------------ADDING WHITE SPACE-------------*/
+
+.title {
+  margin-top: 2em !important;
+  margin-bottom: 0.75em;
+}
+
+/* Whole document: */
+body{
+  font-family: Helvetica;
+  font-size: 10pt;
+}
+/* Headers */
+h1{
+  font-size: 24pt;
+}
+h2,h3,h4,h5,h6 {
+  
+  font-size: 16pt;
+}
+
+
+
 /*----------LOGO above TOC---------*/
 
 #TOC::before {
   content: "";
   display: block;
   height: 200px;
-  margin: 2em 20px 40px 20px;
-  background-image: ("fig/emblem_01.gif");
+  
+  background-image: url("fig/emblem_01.gif");
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
 }
+

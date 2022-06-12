@@ -1,16 +1,19 @@
 ---
-title: "Final Term Project 2022"
+title: "Final Term Project 2022-R01"
+
+author: "Kwon, Donghoon"
+
+date: '2022-06-13'
+
 output: 
   html_document :
+
     toc: true
     toc_float: true
     css: "style.css"
+
+
 ---
-
-    TOC::before {
-      content: ""; display: block; height: 200px; margin: 2em 20px 40px 20px; background-image: ("fig/hws.jpg"); background-size: contain; background-position: center center; background-repeat: no-repeat; 
-
-    }
 
 ```{=html}
 <style>
@@ -18,13 +21,14 @@ output:
 
 .list-group-item.active, .list-group-item.active:focus,
 .list-group-item.active:hover{
-background-color:pink;
+background-color: pink;
 color : red;
 border-color: gray;
 }
 
 </style>
 ```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -44,21 +48,26 @@ library(trelliscopejs)
 library(knitr)
 library(captioner)
 
+options(scipen = 1000)
+
 ```
 
-[1. Abstract](#%20Abstract)
+<!-- [1. Abstract](# 1. Abstract) -->
 
-[2. Introduction](#%20Introduction)
+<!-- [2. Introduction](#%20Introduction) -->
 
-[3. Data](#%20Data)
+<!-- [3. Data](#%20Data) -->
 
-[4. Methodology](#%20Methodology)
+<!-- [4. Methodology](#%20Methodology) -->
+<br />
+<br />
+<br />
 
-# 1. Abstract
+#  **1. Abstract**
 
-Transfer is important in the public transit since
-대중교통에서 환승은 significantly 중요하다. 특히 도시 외곽에서 중심으로 들어오기 위해서는 수단 변경, 즉 환승이 필수적인데 
+<br />
 
+Transfer is important in the public transit since 대중교통에서 환승은 significantly 중요하다. 특히 도시 외곽에서 중심으로 들어오기 위해서는 수단 변경, 즉 환승이 필수적인데
 
 ```{r, echo=FALSE, fig.align='center', out.width="100%", fig.cap="hwaseongsi"}
 # knitr::include_graphics("fig/hws.jpg")
@@ -80,13 +89,85 @@ print("include F")
 print("include T")
 ```
 
-# 2. Introduction
+
+<br />
+<br />
+<br />
+
+
+# **2. Introduction**
+
+<br />
+
+## 2.1. Problem Statement  
+```{r,include=F}
+
+#* 대도시권역으로 들어올 때는 목적지까지 단일 통행으로 들어오기 어려워서 주로 환승을 함(버스-버스/전철-버스)  
+
+#* 좋은 환승, 즉 환승시간이 짧게 이루어지는 것은 시민들의 대중교통이용을 장려하여 대중교통 이용량 증가  
+
+#* 대도시권의 승용차 이용 정도 감소 효과  
+
+#* 그래서 대중교통 이용승객의 편의성 증대 및 대중교통 이용객 증가 효과  
+
+#* 그런데 대중교통 평균 환승시간(2015년 수도권 기준) 이동 6.3분 대기 7분
+```
+
+* When entering a metropolitan area, it is difficult to enter the destination by a single trip, so people usually transfer (bus-bus/train-bus)
+
+* Good transfers, i.e. shorter transfers time, encourage citizens to use public transit, thereby increasing public transportation.
+
+* This could lead to a reduction in the use of automobiles in metropolitan areas.
+
+* In addition, it can increase the convenience of passengers using public transit and escalate the number of passengers using public transit.
+
+* However, based on the Seoul metropolitan area(2015), the average transfers time for public transportation consisted of 6.3 minutes of travel time and 7 minutes of waiting time.
+
+<br />
 
 ```{r}
+#지하철 태그에서 버스 환승 하는 그림 하나 fig
+```
+
+
+## 2.2. Research Objectives
+
+
+```{r,include=F}
+
+# * 지하철에서 버스로 환승하는 승객들의 대기시간 감소
+# 
+# * 대기시간을 계산하기 위해 승객 정류장 도착시각 추정
+# 
+# * 버스정류장에 도착하는 (bus only user) 승객들의 대기시간 감소도 동시에 고려  
+# 
+# * 카드 데이터를 통해 얻은 승객의 도착시각 분포에 맞게 버스 운행시간 최적화 목적
 
 ```
 
-# 3. Data Description
+* To reduce waiting time for passengers transferring from subway to bus
+
+* To Estimate the arrival time at the passenger stop to calculate the waiting time
+
+* Reducing waiting time for bus only users is also considered.
+
+* To optimize bus operation time according to the distribution of arrival time of passengers obtained from card data
+ 
+ 
+<br /> 
+
+## 2.3. Literature Reviews
+
+
+
+<br />
+<br />
+<br />
+
+
+# **3. Data Description**
+
+<br />
 
 ```{r,include=F}
 #rawData description
@@ -112,15 +193,7 @@ n2 <- c("발권시간", "승차정류장ID_국토부표준", "승차정류장ID_
 rawDataCon <- data.frame("No."=d1,"Name"=n1,"No. "=d2,"Name "=n2)
 ```
 
-```{r, echo=F}
 
-kable(rawDataCon,
-      align=c("c","c","c","c"),
-      caption = "Description of Smart Card Data") %>%
-   kable_styling(bootstrap_options = "striped", full_width = T, position = "left")%>%
-  kable_styling(latex_options = "HOLD_position")
-
-```
 
 <!-- | No. | Name | No. | Name | -->
 
@@ -153,28 +226,215 @@ kable(rawDataCon,
 <!-- |13 | 교통사업자ID | 27 | 총탑승시간 | -->
 
 <!-- |14 | 승차일시 | -->
+## 3.1. Description of Smart Card Data
 
-## 3.1. Description of Test Network(120 Line)
+```{r, echo=F}
 
-### 3.1.1 who are you
-
-## 3.2. Description of Smart Card Data
-
-```{r}
+kable(rawDataCon,
+      align=c("c","c","c","c"),
+      caption = "Description of Smart Card Data") %>%
+   kable_styling(bootstrap_options = "striped", full_width = T, position = "center")%>%
+  kable_styling(latex_options = "HOLD_position")
 
 ```
 
+
+## 3.2. Test Network(120 Line)
+
+```{r}
+#120번 버스 노선도
+```
+
+* 서울 강북~청량리를 잇는 버스  
+
+* 주요 정차역 (지하철역 몇개, 덕성여대, 서울 동부병원 )
+
+* 2017년 우이신설선이 생기기 전 우이동으로 가는 승객들이 주로 이용
+
+
 ## 3.3. Data Pre-prrocessing
+
+<br />
+### 3.3.1. Transfer Passengers
+
+```{r,echo=FALSE}
+#환승객 전처리 과정 pseudo code? fig
+
+transfer_example <- read.csv(file=paste0(midSave,"totalTrpChainTable-105000447-0517.csv"))
+
+trnsfr <- transfer_example[1,]
+
+#before chain
+
+r1 <- trnsfr[,c(2,13,4,14,6)]
+colnames(r1) <- c("ID","Boarding_Time","Boarding_Station","Alighting_Time","Alighting_Station")
+r2 <- trnsfr[,c(2,15,10,16,12)]
+colnames(r2) <- c("ID","Boarding_Time","Boarding_Station","Alighting_Time","Alighting_Station")
+
+rr <- rbind(r1,r2)
+
+yorn <- data.frame(c(0,1))
+colnames(yorn) <- c("Transfer")
+
+rr <- cbind(rr,yorn)
+
+
+#after chain
+
+afterChain <- trnsfr[,c(13,4,14,6,15,10,16,12)]
+colnames(afterChain) <- c("Boarding_Time1","Boarding_Station1","Alighting_Time1","Alighting_Station1",
+                          "Boarding_Time2","Boarding_Station2","Alighting_Time2","Alighting_Station2")
+
+
+```
+
+```{r, tidy=F, eval=F, highlight=F }
+<pseudocode>
+
+Data_Suyu <- filter(Data,Data$BoardingStation == "Suyu" )
+
+ID <- unique(Data_Suyu$ID)
+
+Data_Suyu_candidate <- filter(Data,Data$ID == ID)
+
+Data_Transfer_Available <- filter(Data_Suyu_candidate, $Boarding == B2 & $Alighting == A1)
+
+diff(Data_Transfer_Available$Transfer) == 1
+```
+
+<br />
+
+```{r,echo=FALSE}
+
+  
+#pick
+kable(rr,
+      align=c("c","c","c","c","c","c"),
+      caption = "An example of transfer available passenger") %>%
+   kable_styling(bootstrap_options = "striped", full_width = T, position = "center")%>%
+  kable_styling(latex_options = "HOLD_position")
+
+kable(afterChain,
+      align=c("c","c","c","c","c","c","c","c","c"),
+      caption = "The trip chain of a transfer available passenger") %>%
+   kable_styling(bootstrap_options = "striped", full_width = T, position = "center")%>%
+  kable_styling(latex_options = "HOLD_position")
+
+
+```
+
+
+
+<br />
+
+### 3.3.2. Bus only user
+
+```{r, tidy=FALSE, eval=FALSE, highlight=FALSE }
+
+<pseudocode>
+  
+Data_Suyu <- filter(Data,Data$BoardingStation == "Suyu" )
+
+BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
+
+```
+
+<br />
 
 ## 3.4. Assumption
 
+### 3.4.1. Bus Timetable
+
+### 3.4.2. Assumption  
+
+* 환승 승객은 어떤 분포를 따르는데....  
+
+* 우선은 1분씩 차감(고정값)
+
+
+```{r}
+# 환승승객 AT1 BT2 분포 좁혀서 하나 fig
+```
+
+
+* Bus only user는 등간격으로 도착
+
+```{r}
+# 설명 fig
+```
+
+
+### 3.4.3 Estimating Passenger Arrival Time at the Bus Stop
+
+```{r}
+#통합 그림1 fig
+```
+
+```{r}
+#통합 그림 2 퍼오기 fig
+```
+
+
+
+
 ## 3.5. Basic Statistics
 
-# 4. Methodology
+```{r}
+# facet warp으로 역별 / 환승유형별 누적 도착정도
+```
 
-# 5. Conclusion
 
-## wow
+```{r}
+# 주요 역별 transfer ratio 17:00~19:00
+```
+
+
+<br />
+<br />
+<br />
+
+
+# **4. Methodology**
+
+<br />
+
+
+## 4.1. Genetic Algorithm
+
+## 4.2. Chromosome
+
+## 4.3. Results
+
+
+
+<br />
+<br />
+<br />
+
+
+
+
+# **5. Conclusion**  
+
+<br />
+
+* 기존 시각표에서 일정 옮기는 것 효과가 있지만  
+
+* 승객 도착 분포를 정밀하게 추정할 필요가 있음
+
+*
+
+
+
+<br />
+<br />
+<br />
+
+
+
+# References
+
+
 
 sadsadsadsadsadsadsadsad
 
