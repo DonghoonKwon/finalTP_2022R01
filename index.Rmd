@@ -1,7 +1,7 @@
 ---
 title: "Final Term Project 2022"
 output: 
-  github_document :
+  html_document :
     toc: true
 ---
 
