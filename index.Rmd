@@ -1,13 +1,45 @@
 ---
-title: "Untitled"
+title: "Final Term Project 2022"
 output: 
   html_document :
-    toc : true
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# Abstract
+
+
+# Introduction
+
+
+# Data 
+
+## Data Description
+
+
+## Data Pre-prrocessing
+
+
+
+## Assumption
+
+
+
+## Basic Statistics
+
+
+# Methodology
+
+
+
+
+
+#
+
 
 ## wow
 
