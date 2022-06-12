@@ -1,11 +1,30 @@
 ---
 title: "Final Term Project 2022"
 output: 
-  github_document :
+  html_document :
     toc: true
-   
+    toc_float: true
+    css: "style.css"
 ---
 
+    TOC::before {
+      content: ""; display: block; height: 200px; margin: 2em 20px 40px 20px; background-image: ("fig/hws.jpg"); background-size: contain; background-position: center center; background-repeat: no-repeat; 
+
+    }
+
+```{=html}
+<style>
+
+
+.list-group-item.active, .list-group-item.active:focus,
+.list-group-item.active:hover{
+background-color:pink;
+color : red;
+border-color: gray;
+}
+
+</style>
+```
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -22,67 +41,142 @@ library(lubridate)
 library(ggplot2)
 library(rcompanion)
 library(trelliscopejs)
+library(knitr)
+library(captioner)
 
 ```
 
-[1. Abstract](# Abstract)  
+[1. Abstract](#%20Abstract)
 
-[2. Introduction](# Introduction)  
+[2. Introduction](#%20Introduction)
 
-[3. Data](# Data)  
+[3. Data](#%20Data)
 
-[4. Methodology](# Methodology)  
+[4. Methodology](#%20Methodology)
 
+# 1. Abstract
 
-
-
-# Abstract
-
-Transfer is important in the public transit since 
+Transfer is important in the public transit since
+대중교통에서 환승은 significantly 중요하다. 특히 도시 외곽에서 중심으로 들어오기 위해서는 수단 변경, 즉 환승이 필수적인데 
 
 
-# Introduction
+```{r, echo=FALSE, fig.align='center', out.width="100%", fig.cap="hwaseongsi"}
+# knitr::include_graphics("fig/hws.jpg")
+```
 
+```{r, echo=FALSE}
+print("echo F")
+```
 
-# Data Description
+```{r, echo=TRUE}
+print("echo T")
+```
 
+```{r, include=FALSE}
+print("include F")
+```
 
-## Description of Test Network(120 Line)  
+```{r, include=TRUE}
+print("include T")
+```
 
-
-## Description of Smart Card Data
+# 2. Introduction
 
 ```{r}
 
 ```
 
+# 3. Data Description
 
+```{r,include=F}
+#rawData description
+midSave <- "C:/Users/TLSYSLAB_3_ADMIN/Desktop/donghoon_temp/2022-1/2022W11-수업-교통및물류최적화(Prof.강)/final/중간save/gimal/"
+#rawDataReal <- fread(paste0(Rpath,"0517",".txt"))
 
-## Data Pre-prrocessing
+#rawforDP <- rawDataReal[1:15,]
 
+rawforDP <- read.csv(file=paste0(midSave,"rawforDP.csv"))
 
+str(rawforDP)
 
+d1 <- c(1:14)
+n1 <- c("일련번호","가상카드번호","정산지역코드","카드구분코드","차량ID_국토부표준",
+        "차량ID_정산사업자","차량등록번호","운행출발일시","운행종료일시","교통수단코드",
+        "노선ID_국토부표준","노선ID_정산사업자","교통사업자ID","승차일시")
 
-## Assumption
+d2 <- c(15:28)
+n2 <- c("발권시간", "승차정류장ID_국토부표준", "승차정류장ID_교통사업자","하차일시","하차정류장ID_국토부표준",
+        "하차정류장ID_정산사업자","트랜잭션ID","환승횟수","사용자구분코드","이용객수_다인승",
+        "승차금액","하차금액","총이용거리","총탑승시간")
 
+rawDataCon <- data.frame("No."=d1,"Name"=n1,"No. "=d2,"Name "=n2)
+```
 
+```{r, echo=F}
 
-## Basic Statistics
+kable(rawDataCon,
+      align=c("c","c","c","c"),
+      caption = "Description of Smart Card Data") %>%
+   kable_styling(bootstrap_options = "striped", full_width = T, position = "left")%>%
+  kable_styling(latex_options = "HOLD_position")
 
+```
 
-# Methodology
+<!-- | No. | Name | No. | Name | -->
 
+<!-- |:--:| :---: | :--:| :---: | -->
 
+<!-- |1 | 일련번호 | 15| 발권시간 | -->
 
+<!-- |2 | 가상카드번호 | 16| 승차정류장ID_국토부표준 | -->
 
+<!-- |3 | 정산지역코드 | 17| 승차정류장ID_교통사업자 | -->
 
-#
+<!-- |4 | 카드구분코드 | 18| 하차일시 | -->
 
+<!-- |5 | 차량ID_국토부표준 | 19| 하차정류장ID_국토부표준 | -->
+
+<!-- |6 | 차량ID_정산사업자 | 20 | 하차정류장ID_정산사업자 | -->
+
+<!-- |7 | 차량등록번호  | 21 | 환승횟수 | -->
+
+<!-- |8 | 운행출발일시 | 22 | 사용자구분코드  | -->
+
+<!-- |9 | 운행종료일시 | 23 | 이용객수_다인승 | -->
+
+<!-- |10 | 교통수단코드 | 24 | 승차금액 | -->
+
+<!-- |11 | 노선ID_국토부표준 | 25 | 하차금액 | -->
+
+<!-- |12 | 노선ID_정산사업자 | 26 | 총이용거리  | -->
+
+<!-- |13 | 교통사업자ID | 27 | 총탑승시간 | -->
+
+<!-- |14 | 승차일시 | -->
+
+## 3.1. Description of Test Network(120 Line)
+
+### 3.1.1 who are you
+
+## 3.2. Description of Smart Card Data
+
+```{r}
+
+```
+
+## 3.3. Data Pre-prrocessing
+
+## 3.4. Assumption
+
+## 3.5. Basic Statistics
+
+# 4. Methodology
+
+# 5. Conclusion
 
 ## wow
 
 sadsadsadsadsadsadsadsad
-
 
 ## GitHub Documents
 
