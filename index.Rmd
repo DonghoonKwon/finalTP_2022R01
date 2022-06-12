@@ -125,7 +125,7 @@ print("include T")
 
 <br />
 
-```{r, echo=FALSE, fig.align='center', out.width="80%", fig.cap="subway and bus"}
+```{r, echo=FALSE, fig.align='center', out.width="80%", fig.cap="Fig 1. subway and bus"}
  knitr::include_graphics("fig/transfer.png")
 ```
 
@@ -161,6 +161,18 @@ print("include T")
 ## 2.3. Literature Reviews
 
 
+* Jansen, Leise Neel, Michael Berliner Pedersen, and Otto Anker Nielsen. "Minimizing passenger transfer times in public transport timetables."(2002)
+   * This paper presents a mathematical optimization model that can solve the problem of finding
+an optimal timetable for a public transport system in which waiting times connected to
+transfers between lines are minimized. 
+
+<br /> 
+
+* Cevallos, Fabian, and Fang Zhao. "Minimizing transfer times in public transit network with genetic algorithm." Transportation Research Record(2006)
+   * This paper presents a systemwide approach based on a genetic algorithm for the optimization of bus transit system transfer times.
+   
+ $$ minimize \sum_{i=1}^{N}\sum_{j=1}^{N}\sum_{k=1}^{D_i}R_k \sum_{l=1}^{D_j}C_{ijkl}\sum_{p=1}^{B_i}\sum_{q=1}^{B_j}[(d_{jlq}+ \Delta_{jlq} + S_j ) - (a_{ikp}+ \Delta_{ikp} + S_j +w_{ijkl})]$$
+   
 
 <br />
 <br />
@@ -237,9 +249,9 @@ rawDataCon <- data.frame("No."=d1,"Name"=n1,"No. "=d2,"Name "=n2)
 
 kable(rawDataCon,
       align=c("c","c","c","c"),
-      caption = "Description of Smart Card Data") %>%
+      caption = "<center><strong>Table 1. Description of Smart Card Data</strong></center>") %>%
    kable_styling(bootstrap_options = "striped", full_width = T, position = "center")%>%
-  kable_styling(latex_options = "HOLD_position")
+  kable_styling(latex_options = "HOLD_position", font_size=12)
 
 ```
 
@@ -247,7 +259,7 @@ kable(rawDataCon,
 
 ## 3.2. Test Network(120 Line)
 
-```{r, echo=FALSE, fig.align='center', out.width="50%", fig.cap="120 Line Bus"}
+```{r, echo=FALSE, fig.align='center', out.width="50%", fig.cap="Fig 2. 120 Line Bus"}
  knitr::include_graphics("fig/bus120Total.png")
 ```
 
@@ -327,6 +339,14 @@ Data_Transfer_Available <- filter(Data_Suyu_candidate, $Boarding == B2 & $Alight
 diff(Data_Transfer_Available$Transfer) == 1
 ```
 
+
+
+
+
+```{r, echo=FALSE, fig.align='center', out.width="70%", fig.cap="Fig 3. Transfer Time Zone"}
+ knitr::include_graphics("fig/transferTimeZone.png")
+```
+
 <br />
 
 ```{r,echo=FALSE}
@@ -335,17 +355,17 @@ diff(Data_Transfer_Available$Transfer) == 1
 #pick
 kable(rr,
       align=c("c","c","c","c","c","c"),
-      caption = "An example of transfer available passenger") %>%
+      caption = "<center><strong>Table 2. An example of transfer available passenger</strong></center>") %>%
    kable_styling(bootstrap_options = "striped", full_width = T, position = "center")%>%
-  kable_styling(latex_options = "HOLD_position")
+  kable_styling(latex_options = "HOLD_position", font_size=12)
 
 kable(afterChain,
       align=c("c","c","c","c","c","c","c","c","c"),
-      caption = "The trip chain of a transfer available passenger") %>%
+      caption = "<center><strong>Table 3. Trip chain of a transfer available passenger</strong></center>") %>%
    kable_styling(bootstrap_options = "striped", full_width = T, position = "center")%>%
   kable_styling(latex_options = "HOLD_position") %>%
   column_spec (4,border_left = F, border_right = T) %>%
-  kable_styling()
+  kable_styling(latex_options = "HOLD_position", font_size=12)
 
 
 ```
@@ -375,7 +395,7 @@ BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
 
 ### 3.4.1. Bus Timetable
 
-```{r, echo=FALSE, fig.align='center', out.width="900%", fig.cap="Framework for estimating passengers arrival time by each transfer type"}
+```{r, echo=FALSE, fig.align='center', out.width="900%", fig.cap="Fig 4. Framework for estimating passengers arrival time by each transfer type"}
  knitr::include_graphics("fig/assumption.png")
 ```
 
@@ -383,45 +403,93 @@ BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
 
 ### 3.4.2. Assumption  
 
-* 환승 승객은 어떤 분포를 따르는데....  
 
-* 우선은 1분씩 차감(고정값)
+```{r, include=F}
+#* 버스의 dwell time은 첫 승차부터 마지막 승차, 마지막 하차 중 큰 값을 따른다고 가정한다.
 
-
-```{r}
-# 환승승객 AT1 BT2 분포 좁혀서 하나 fig
 ```
 
 
-* Bus only user는 등간격으로 도착
 
-```{r}
-# 설명 fig
+* It is supposed that the dwell time of buses follow from the first boarding time to a larger value between the last boarding time and the last alighting time 
+
+
+
+<br />
+
+
+#### i) Transfer User  
+
+* It is presupposed that transfer passengers accompany a specific distribution.
+ 
+
+* In this presentation, the fixed value is subtracted from the bus tag-in time and assumed to be the arrival time.
+
+```{r, echo=FALSE, fig.align='center', out.width="90%", fig.cap="Fig 5. Distribution of transfers time"}
+ knitr::include_graphics("fig/egressCANNOT.png")
 ```
 
+
+<br />
+
+#### ii) Bus Only User  
+
+
+```{r,include=FALSE}
+#* Bus only user는 등간격으로 도착했다고 가정
+```
+
+* It is assumed that the bus only users arrived at equal intervals, uniform distribution.
+
+
+
+```{r, echo=FALSE, fig.align='center', out.width="60%", fig.cap="Fig 6. Uniform Distribution of bus only users"}
+ knitr::include_graphics("fig/distribution.png")
+```
+
+
+<br />
 
 ### 3.4.3 Estimating Passenger Arrival Time at the Bus Stop
 
 
-
-```{r}
-#통합 그림 2 퍼오기 fig
+```{r, echo=FALSE, fig.align='center', out.width="80%", fig.cap="Fig 7. Bus Trajectory by data-driven"}
+ knitr::include_graphics("fig/timtable_by_data.png")
 ```
 
+<br />
 
-
-
-## 3.5. Basic Statistics
-
-```{r}
-# facet warp으로 역별 / 환승유형별 누적 도착정도
+```{r, echo=FALSE, fig.align='center', out.width="40%", fig.cap="Fig 8. Passenger transfer patterns(Leise, et al., 2002)"}
+ knitr::include_graphics("fig/ref_fig.png")
 ```
 
+<br />
 
-```{r}
-# 주요 역별 transfer ratio 17:00~19:00
-```
+<center><strong>Table 3. Waiting time based on data-driven timetable</strong></center>
 
+| Station | Transfer(min) | Bus Only(min) |
+| :-----:| :-----:| :-----:|
+|1 | 18.87 | 516.62|
+|2 | 79.90 | 488.98|
+|3 | 39.37 | 446.15|
+|4 | 561.82 | 563.15|
+|Sum| 561.82 | 2014.9|
+
+<!-- ## 3.5. Basic Statistics -->
+
+<!-- ```{r} -->
+<!-- # facet warp으로 역별 / 환승유형별 누적 도착정도 -->
+<!-- ``` -->
+
+
+<center><strong>Table 4. Transfer Ratio during the afternoon peak time</strong></center>
+
+| Bus stop NO. | Name | BoardinglSubway |  Boarding | Transder ratio(%) |
+| :-----| :-----| :-----| :-----|:-----|
+|108000004 | 수유역.강북구청 | 190| 337| 56|
+|105000447 | 청량리역환승센터 | 16| 209| 8|
+|10700043 | 월곡역 | 71| 208| 34|
+|108000012 | 미아사거리역 | 26| 181| 14|
 
 <br />
 <br />
@@ -432,13 +500,69 @@ BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
 
 <br />
 
-
 ## 4.1. Genetic Algorithm
+
+```{r, echo=FALSE, fig.align='center', out.width="60%", fig.cap="Fig 9. Genetic Algorithm"}
+ knitr::include_graphics("fig/ga.png")
+```
+
+* Genetic algorithms are a family of computational models inspired by evolution. These algorithms encode a potential solution to a specific problem on a simple chromosome-like data structure, and apply recombination operators to these structures in such a way as to preserve critical information.
+
+<br />
 
 ## 4.2. Chromosome
 
+```{r, echo=FALSE, fig.align='center', out.width="80%", fig.cap="Fig 10. chromosome"}
+ knitr::include_graphics("fig/chromosome.png")
+```
+
+* A time shifting gene indicates how fast or slow it will arrive compared to the existing timetable.
+
+* A dwell time gene contains how long it will stop at each bus stop.
+
+<br />
+
+```{r, echo=FALSE, fig.align='center', out.width="80%", fig.cap="Fig 11. reference timetalbe"}
+ knitr::include_graphics("fig/scheduled.png")
+```
+
+<br />
+
 ## 4.3. Results
 
+```{r,include=F}
+savePath <- "C:/Users/TLSYSLAB_3_ADMIN/Desktop/donghoon_temp/2022-1/2022W11-수업-교통및물류최적화(Prof.강)/final/중간save/fromGA/"
+
+#ordering <- c(0:100)
+
+plotTable <- data.frame()
+oderingNum <- data.frame(c(0:100))
+for(ordering in c(0:100)){
+ 
+  #ordering <- 0 
+  temp <- read.csv(file=paste0(savePath,"/",ordering,"/Fit-gen-",ordering,".csv"))
+  
+  plotTable <- rbind(plotTable,temp$Fit)
+ 
+  
+}
+plotTable <- cbind(plotTable, oderingNum)
+colnames(plotTable) <- c("Fit","iteration")
+
+```
+
+
+<left><strong> Fitness Value</strong></left>
+```{r,echo=F, fig.cap="Fig 12. Fitness Value"}
+
+ggplot(plotTable, aes(iteration,Fit)) + geom_line(color="red")
+```
+
+<br />
+
+```{r, echo=FALSE, fig.align='center', out.width="80%", fig.cap="Fig 13. Fitness Plot: iteration 100"}
+ knitr::include_graphics("fig/fitnessPlot-100.png")
+```
 
 
 <br />
@@ -452,11 +576,9 @@ BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
 
 <br />
 
-* 기존 시각표에서 일정 옮기는 것 효과가 있지만  
+* shifting from the reference timetable seems to be effective, but more realistically, it is necessary to simulate bus movements.
 
-* 승객 도착 분포를 정밀하게 추정할 필요가 있음
-
-*
+* It is necessary to accurately estimate the distribution of passenger arrivals.
 
 
 
@@ -468,28 +590,8 @@ BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
 
 # References
 
+* Jansen, Leise Neel, Michael Berliner Pedersen, and Otto Anker Nielsen. "Minimizing passenger transfer times in public transport timetables." 7th Conference of the Hong Kong Society for Transportation Studies, Transportation in the information age, Hong Kong. 2002.
+
+* Cevallos, Fabian, and Fang Zhao. "Minimizing transfer times in public transit network with genetic algorithm." Transportation Research Record 1971.1 (2006): 74-79.
 
 
-sadsadsadsadsadsadsadsad
-
-## GitHub Documents
-
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
-
-## Including Code
-
-You can include R code in the document as follows:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
