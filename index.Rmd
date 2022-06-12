@@ -1,13 +1,40 @@
 ---
 title: "Final Term Project 2022"
 output: 
-  html_document :
+  github_document :
     toc: true
+   
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(data.table)
+library(far)
+library(MASS)
+library(pracma)
+library(kableExtra)
+library(wooldridge)
+library(dplyr)
+library(ggplot2)
+library(matlib)
+library(lubridate)
+library(ggplot2)
+library(rcompanion)
+library(trelliscopejs)
+
 ```
+
+[1. Abstract](# Abstract)  
+
+[2. Introduction](# Introduction)  
+
+[3. Data](# Data)  
+
+[4. Methodology](# Methodology)  
+
+
+
 
 # Abstract
 
@@ -17,12 +44,22 @@ Transfer is important in the public transit since
 # Introduction
 
 
-# Data 
+# Data Description
 
-## Data Description
+
+## Description of Test Network(120 Line)  
+
+
+## Description of Smart Card Data
+
+```{r}
+
+```
+
 
 
 ## Data Pre-prrocessing
+
 
 
 
