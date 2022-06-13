@@ -553,7 +553,7 @@ ggplot(plotTable, aes(iteration,Fit)) + geom_line(color="red")
 
 <br />
 
-* shifting from the reference timetable seems to be effective, but more realistically, it is necessary to simulate bus movements.
+* Shifting from the reference timetable seems to be effective, but more realistically, it is necessary to simulate bus movements.
 
 * It is necessary to accurately estimate the distribution of passenger arrivals.
 
