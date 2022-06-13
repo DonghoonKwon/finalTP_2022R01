@@ -66,13 +66,8 @@ options(scipen = 1000)
 #  **1. Abstract**
 
 <br />
-
-
-
-
 <br />
-<br />
-<br />
+
 
 
 # **2. Introduction**
