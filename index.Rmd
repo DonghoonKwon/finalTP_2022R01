@@ -1,5 +1,5 @@
 ---
-title: "Final Term Project 2022-R01"
+title: "Final Term Project 2022-R01 \n\n\n\nMinimizing Subway to Bus Transfer Times with Genetic Algorithm"
 
 author: "Kwon, Donghoon"
 
