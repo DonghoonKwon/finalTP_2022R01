@@ -483,7 +483,7 @@ BusOnlyUser <- filter(Data_Suyu, Data_Suyu$ID != Data_Transfer_Available$ID)
  knitr::include_graphics("fig/ga.png")
 ```
 
-* Genetic algorithms are a family of computational models inspired by evolution. These algorithms encode a potential solution to a specific problem on a simple chromosome-like data structure, and apply recombination operators to these structures in such a way as to preserve critical information.
+* Genetic algorithms are a family of computational models inspired by evolution. These algorithms encode a potential solution to a specific problem on a simple chromosome-like data structure, and apply recombination operators to these structures in such a way as to preserve critical information.(Darrell,1994)
 
 <br />
 
