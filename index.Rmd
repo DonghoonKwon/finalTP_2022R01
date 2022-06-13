@@ -147,7 +147,7 @@ transfers between lines are minimized.
    * This paper presents a systemwide approach based on a genetic algorithm for the optimization of bus transit system transfer times.
    
  $$ minimize \sum_{i=1}^{N}\sum_{j=1}^{N}\sum_{k=1}^{D_i}R_k \sum_{l=1}^{D_j}C_{ijkl}\sum_{p=1}^{B_i}\sum_{q=1}^{B_j}[(d_{jlq}+ \Delta_{jlq} + S_j ) - (a_{ikp}+ \Delta_{ikp} + S_j +w_{ijkl})]$$
-   
+* (수식설명필요)
 
 <br />
 <br />
